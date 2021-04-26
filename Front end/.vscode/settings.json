@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/41de1df9-a77e-451d-844b-a15a1ef606ac/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/SpeedieAppNew",
+    "appService.deploySubpath": "."
+}
