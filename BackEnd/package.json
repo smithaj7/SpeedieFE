@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "func start",
-    "test": "echo \"No tests yet...\""
+    "test": "mocha --recursive --exit"
   },
   "dependencies": {
     "azure-storage": "^2.10.3",
@@ -12,6 +12,7 @@
     "func": "^1.3.4",
     "mssql": "^6.2.1",
     "mysql": "^2.18.1",
+    "node-fetch": "^2.6.1",
     "sql": "^0.78.0",
     "tedious": "^8.3.0",
     "twilio": "^3.48.1",
