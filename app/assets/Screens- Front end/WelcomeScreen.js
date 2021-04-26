@@ -60,7 +60,7 @@ export default class WelcomeScreen extends React.Component {
   }
 
   getData = async () => {
-    return await fetch("http://localhost:7071/api/Login", {
+    return await fetch("https://speediebackend.azurewebsites.net/api/Login?", {
       method: "POST",
       body: JSON.stringify({
         email: this.state.email,
