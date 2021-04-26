@@ -10,10 +10,13 @@ import {
   TextInput,
   ActivityIndicator,
   ScrollView,
+  SafeAreaView,
   Linking,
 } from "react-native";
 import navigation from "react-navigation";
 import Dialog, {DialogTitle, DialogContent } from 'react-native-popup-dialog';
+import Modal from 'react-native-modal';
+
 
 
 //import {useRoute} from '@react-navigation/native'
@@ -44,6 +47,8 @@ export default class MiaOrders extends React.Component {
       newDeliveryDate: "",
       newAddress: "",
       newQuantity: 0,
+      popupinfo: "",
+      isVisible: false,
     };
 
     this.newOrderPressHandler = this.newOrderPressHandler.bind(this);
@@ -53,6 +58,7 @@ export default class MiaOrders extends React.Component {
     this.archivedPressHandler = this.archivedPressHandler.bind(this);
     this.addOrderPressHandler = this.addOrderPressHandler.bind(this);
     this._handleAccountPress = this._handleAccountPress.bind(this);
+    this.displayModal = this.displayModal.bind(this);
   }
 
   componentDidMount() {
@@ -180,6 +186,10 @@ export default class MiaOrders extends React.Component {
         halfGals: hgs,
       }),
     }).then(this.refreshScreen);
+  };
+
+  displayModal(show){
+    this.setState({isVisible: show})
   }
 
   render() {
@@ -196,13 +206,23 @@ export default class MiaOrders extends React.Component {
         arrLength = val.phoneNumbers.length;
       });
       for (let i = 0; i < arrLength; i++) {
+        
         orders.push(
           this.state.dataSource.map((val, index) => {
+            console.log(i)
+            var popupinfo = <div> <div> Customer: {val.names[i]}</div>
+                 <div> Phone Number: {val.phoneNumbers[i]}</div>
+                  <div> Location: {val.locations[i]}</div>
+                 <div> Address: {val.addresses[i]}</div>
+                 <div> Quarts: {val.quarts[i]}</div>
+                <div> HGs: {val.halfGals[i]}</div> </div>
               if (val.orderStatuses[i] == "A") {
                 return (
-                  <DataTable.Row style={i % 2? { background : "#D3D3D3" }:{ background : "white" }} key={i}>
-                    <DataTable.Cell style={{flex: .2}} >
-                        <Button
+                    
+                <View>
+                  <DataTable.Row style={i % 2? { background : "#D3D3D3" }:{ background : "white" }} key={i} >
+                    {/* <DataTable.Cell style={{flex: .2}} >
+                    <Button
                             title="+"
                             onPress={() => { this.setState({ visible: true }); }}
                           />
@@ -211,16 +231,12 @@ export default class MiaOrders extends React.Component {
                           dialogTitle={<DialogTitle title="More Information" />}
                           onTouchOutside={() => { this.setState({ visible: false });}} >
                           <DialogContent>
-                            <div> Customer: {val.names[i]}</div>
-                            <div> Phone Number: {val.phoneNumbers[i]}</div>
-                            <div> Location: {val.locations[i]}</div>
-                            <div> Address: {val.addresses[i]}</div>
-                            <div> Quarts: {val.quarts[i]}</div>
-                            <div> HGs: {val.halfGals[i]}</div>
+                            {popupinfo}
                           </DialogContent>
                         </Dialog>
-                    </DataTable.Cell>
-                    <DataTable.Cell style={{flex: .5}} >{val.deliveryDates[i]}</DataTable.Cell>
+                        
+                    </DataTable.Cell> */}
+                    <DataTable.Cell style={{flex: 1}} >{val.names[i]}</DataTable.Cell>
                     <DataTable.Cell style={{flex: 1}}
                       onPress={() => window.open('https://www.google.com/maps/search/?api=1&query=' + JSON.stringify(val.addresses[i]) + '+' +  JSON.stringify(val.locations[i]), 'blank')}>
                       {val.addresses[i]}</DataTable.Cell>
@@ -233,6 +249,14 @@ export default class MiaOrders extends React.Component {
                       </TouchableOpacity>
                     </DataTable.Cell>
                   </DataTable.Row>
+                  <DataTable.Row style={i % 2? { background : "#D3D3D3" }:{ background : "white" }} key={i} >
+                    <DataTable.Cell style={{flex: .6}} >{val.deliveryDates[i]}</DataTable.Cell>
+                    <DataTable.Cell style={{flex: .8}} >{val.phoneNumbers[i]}</DataTable.Cell>
+                    <DataTable.Cell style={{flex: .5}} >Quarts: {val.quarts[i]},</DataTable.Cell>
+                    <DataTable.Cell style={{flex: .4}} >HGs: {val.halfGals[i]}</DataTable.Cell>
+                  </DataTable.Row>
+
+                </View>
                 );
               } else {
                 return (
@@ -247,12 +271,7 @@ export default class MiaOrders extends React.Component {
                           dialogTitle={<DialogTitle title="More Information" />}
                           onTouchOutside={() => { this.setState({ visible: false });}} >
                           <DialogContent>
-                            <div> Customer: {val.names[i]}</div>
-                            <div> Phone Number: {val.phoneNumbers[i]}</div>
-                            <div> Location: {val.locations[i]}</div>
-                            <div> Address: {val.addresses[i]}</div>
-                            <div> Quarts: {val.quarts[i]}</div>
-                            <div> HGs: {val.halfGals[i]}</div>
+                            {popupinfo}
                           </DialogContent>
                         </Dialog>
                     </DataTable.Cell>
@@ -310,19 +329,6 @@ export default class MiaOrders extends React.Component {
             style={styles.searchBar}
             onChangeText={(text) => this.onChangeSearch(text)}
           ></Searchbar>
-          {/* <RadioButton
-            value="Outstanding"
-            status={this.state.orderStatus === "A" ? "checked" : "unchecked"}
-            onPress={this.outstandingPressHandler}
-          ></RadioButton>
-          <RadioButton
-            value="Archived"
-            status={this.state.orderStatus === "I" ? "checked" : "unchecked"}
-            onPress={this.archivedPressHandler}
-          ></RadioButton>
-          <Text style={styles.unfulfilledText}>Unfulfilled</Text>
-          <Text style={styles.fulfilledText}>Fulfilled</Text> */}
-
           <ScrollView
             style={{
               width: "95%",
@@ -349,19 +355,10 @@ export default class MiaOrders extends React.Component {
               <DataTable.Header style={{ backgroundColor: "#ABD7EB" }}>
                 <View style={styles.headerView}>
                 <DataTable.Title 
-                style={styles.moreInfoHeader}>
-                  +
+                  style={styles.infoHeader}>
+                  Order Information
                 </DataTable.Title>
-                <DataTable.Title 
-                style={styles.deliveryDateHeader}>
-                  Delivery Date
-                </DataTable.Title>
-                <DataTable.Title style={styles.addressHeader}>
-                  Address
-                </DataTable.Title> 
-                <DataTable.Title style={styles.claimHeader}>
-                  Claim
-                </DataTable.Title>
+                
                 </View>
               </DataTable.Header>
               <ScrollView>{orders}</ScrollView>
@@ -374,7 +371,6 @@ export default class MiaOrders extends React.Component {
                 }}
               ></DataTable.Pagination>
             </DataTable>
-           
           </ScrollView>
           {menu}
         </View>
@@ -410,13 +406,6 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     //left: 70
   },
-  // rowColor:{
-  //   backgroundColor: "#D3D3D3",
-  // },
-
-  // rowColor:nth-of-type(even) {
-  //   backgroundColor: "white",
-  // },
 
   newOrderStyle: {
     width: 130,
@@ -555,28 +544,6 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     flex: 1
   },
-
-  phoneHeader: {
-    position: "relative",
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent:"center",
-    flex: 1
-  },
-  addressHeader: {
-    position: "relative",
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent:"flex-start",
-    flex: 1
-  },
-  quantityHeader: {
-    position: "relative",
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent:"center",
-    flex: 1
-  },
   orderHeader: {
     position: "relative",
     marginTop: 5,
@@ -586,27 +553,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#093b15",
   },
-  deliveryDateHeader: {
+  infoHeader: {
+    fontSize: 18,
     position: "relative",
     alignSelf: "center",
     alignItems: "center",
     justifyContent:"flex-start",
-    flex: .5
   },
-  moreInfoHeader: {
-    position: "relative",
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent:"flex-start",
-    flex: .2,
-  },
-  claimHeader: {
-    position: "relative",
-    alignSelf: "center",
-    alignItems: "center",
-    justifyContent:"flex-start",
-    flex: .3
-  },
+  
   editOrder: {
     backgroundColor: "#9AC6A2",
     width: "100%",
