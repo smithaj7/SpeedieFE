@@ -46,6 +46,7 @@ export default class MiaOrders extends React.Component {
       newPhone: "",
       newDeliveryDate: "",
       newAddress: "",
+      visible: false,
       newQuantity: 0,
       popupinfo: "",
       isVisible: false,
@@ -155,7 +156,8 @@ export default class MiaOrders extends React.Component {
     var email = params.user;
     var loc = params.location;
     var employeeRole = params.role;
-    this.props.navigation.navigate("AccountInfo", {user: email, location: loc, role: employeeRole});
+    var passwordLength = params.pLength;
+    this.props.navigation.navigate("AccountInfo", {user: email, location: loc, role: employeeRole, pLength: passwordLength});
   }
 
   inventoryPressHandler() {
@@ -163,14 +165,40 @@ export default class MiaOrders extends React.Component {
     var email = params.user;
     var loc = params.location;
     var employeeRole = params.role;
-    this.props.navigation.navigate("Inventory", {user: email, location: loc, role: employeeRole});
+    var passwordLength = params.pLength;
+    this.props.navigation.navigate("Inventory", {user: email, location: loc, role: employeeRole, pLength: passwordLength});
   }
 
   refreshScreen = () => {
     this.getData();
   };
 
+  popUps(i,val){
+    if (this.state.visible){
+      return(
+        <Dialog
+                          visible={this.state.visible}
+                          dialogTitle={<DialogTitle title="More Information" />}
+                          onTouchOutside={() => { this.setState({ visible: false });}} >
+                          
+                            
+                          <DialogContent>
+                            <div> Customer: {val.names[i]}</div>
+                            <div> Phone Number: {val.phoneNumbers[i]}</div>
+                            <div> Location: {val.locations[i]}</div>
+                            <div> Address: {val.addresses[i]}</div>
+                            <div> Quarts: {val.quarts[i]}</div>
+                            <div> HGs: {val.halfGals[i]}</div>
+                          </DialogContent>
+                        </Dialog>
 
+
+      )
+    }
+  }
+ 
+
+  
   fillOrder(i, orderStatus, qts, hgs) {
     const { params } = this.props.navigation.state;
     var user = params.user;
@@ -181,7 +209,7 @@ export default class MiaOrders extends React.Component {
         orderNumber: i + 1,
         newStatus: orderStatus,
         filledBy: user,
-        bottlesReturned: 1,
+        //bottlesReturned: 1,
         quarts: qts,
         halfGals: hgs,
       }),
@@ -205,6 +233,33 @@ export default class MiaOrders extends React.Component {
       this.state.dataSource.map((val, key) => {
         arrLength = val.phoneNumbers.length;
       });
+
+      
+      var popups = [];
+
+        for(let index = 0;index < arrLength;index++)
+        popups.push(
+        this.state.dataSource.map((val, index) => {
+            
+              return(
+                
+    
+                          <DialogContent>
+                            <div> Customer: {val.names[index]}</div>
+                            <div> Phone Number: {val.phoneNumbers[index]}</div>
+                            <div> Location: {val.locations[index]}</div>
+                            <div> Address: {val.addresses[index]}</div>
+                            <div> Quarts: {val.quarts[index]}</div>
+                            <div> HGs: {val.halfGals[index]}</div>
+                          </DialogContent> 
+                        
+
+             ) 
+              }
+        )
+        )
+            
+      
       for (let i = 0; i < arrLength; i++) {
         
         orders.push(
@@ -226,10 +281,14 @@ export default class MiaOrders extends React.Component {
                             title="+"
                             onPress={() => { this.setState({ visible: true }); }}
                           />
-                        <Dialog
+                          {this.popUps(i,val)}
+
+                        {/* <Dialog
                           visible={this.state.visible}
                           dialogTitle={<DialogTitle title="More Information" />}
                           onTouchOutside={() => { this.setState({ visible: false });}} >
+                          {this.popUps(i,val)}
+                            
                           <DialogContent>
                             {popupinfo}
                           </DialogContent>
@@ -266,10 +325,12 @@ export default class MiaOrders extends React.Component {
                             title="+"
                             onPress={() => { this.setState({ visible: true }); }}
                           />
+                          
                         <Dialog
                           visible={this.state.visible}
                           dialogTitle={<DialogTitle title="More Information" />}
                           onTouchOutside={() => { this.setState({ visible: false });}} >
+                            
                           <DialogContent>
                             {popupinfo}
                           </DialogContent>

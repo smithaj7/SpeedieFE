@@ -95,6 +95,8 @@ export default class WelcomeScreen extends React.Component {
       return val.Role;
     });
 
+    var passwordLength = this.state.password.length;
+
     console.log(li[0]);
     console.log(this.state.email);
     console.log(this.state.password);
@@ -108,14 +110,14 @@ export default class WelcomeScreen extends React.Component {
         () => console.log(this.state.loggedIn)
       );
       if (location == "All") {
-        this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole });
+        this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
       } else if (location == "Miami") {
         var userName = this.state.email;
-        this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole });
+        this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
       } else if (location == "New Orleans") {
-        this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole });
+        this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
       } else if (location == "Chicago") {
-        this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole });
+        this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
       }
     } else {
       alert("Invalid username or password");

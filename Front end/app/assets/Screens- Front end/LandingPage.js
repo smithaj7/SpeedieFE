@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
   menuButton: {
     position: "relative",
     alignSelf: "center",
-    marginTop: "10%",
+    marginTop: "8%",
     backgroundColor: "#113B08",
     alignItems: "center",
     justifyContent: "center",

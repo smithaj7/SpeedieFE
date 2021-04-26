@@ -173,15 +173,13 @@ export default class WelcomeScreen extends React.Component {
   };
 
   render() {
-    // var li = [];
-    // li = this.state.dataSource.map((val, key) => {
-    //   return val.LoggedIn[0];
-    // });
-    // if (li) {
-    //   this.setState({
-    //     loggedIn: true,
-    //   });
-    // }
+    const { params } = this.props.navigation.state;
+    var passwordLength = params.pLength;
+    var pword = "";
+    for (let i =0; i < passwordLength;i++){
+      pword += "*";
+    }
+
     var ordersTaken = this.state.dataSource.map((val, key) => {
          return val.OrdersTaken;
        });
