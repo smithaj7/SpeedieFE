@@ -1,6 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
-  "homepage": "http://smithaj7.github.io/SpeedieFE/App.js",
+  "homepage": "/web-build",
+  
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
