@@ -102,23 +102,31 @@ export default class WelcomeScreen extends React.Component {
     console.log(this.state.password);
 
     if (li[0] == "Yes") {
-      console.log("hey");
+      //console.log("hey");
       this.setState(
         {
           loggedIn: true,
         },
         () => console.log(this.state.loggedIn)
       );
-      if (location == "All") {
-        this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
-      } else if (location == "Miami") {
-        var userName = this.state.email;
-        this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
-      } else if (location == "New Orleans") {
-        this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
-      } else if (location == "Chicago") {
-        this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
-      }
+      var userName = this.state.email;
+      this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
+      // if (employeeRole == "Associate"){
+      //   this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
+      // }
+      // else{
+      //   this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
+      // }
+      // if (location == "All") {
+      //   this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
+      // } else if (location == "Miami") {
+      //   var userName = this.state.email;
+      //   this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
+      // } else if (location == "New Orleans") {
+      //   this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
+      // } else if (location == "Chicago") {
+      //   this.props.navigation.navigate("LandingPage", { user: userName, loc: location, role: employeeRole, pLength: passwordLength });
+      // }
     } else {
       alert("Invalid username or password");
     }

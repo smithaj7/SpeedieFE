@@ -88,7 +88,8 @@ export default class WelcomeScreen extends React.Component {
     var email = params.user;
     var loc = params.location;
     var employeeRole = params.role;
-    this.props.navigation.navigate("AccountInfo", {user: email, location: loc, role: employeeRole});
+    var passwordLength = params.pLength;
+    this.props.navigation.navigate("AccountInfo", {user: email, location: loc, role: employeeRole, pLength: passwordLength});
   }
 
   inventoryPressHandler() {
@@ -96,7 +97,8 @@ export default class WelcomeScreen extends React.Component {
     var email = params.user;
     var loc = params.location;
     var employeeRole = params.role;
-    this.props.navigation.navigate("Inventory", {user: email, location: loc, role: employeeRole});
+    var passwordLength = params.pLength;
+    this.props.navigation.navigate("Inventory", {user: email, location: loc, role: employeeRole, pLength: passwordLength});
   }
 
   ordersPressHandler(){
@@ -104,7 +106,8 @@ export default class WelcomeScreen extends React.Component {
     var email = params.user;
     var loc = params.location;
     var employeeRole = params.role;
-    this.props.navigation.navigate("MiaOrders", {user: email, location: loc, role: employeeRole});
+    var passwordLength = params.pLength;
+    this.props.navigation.navigate("MiaOrders", {user: email, location: loc, role: employeeRole, pLength: passwordLength});
   } 
   changePasswordPress(){
     this.props.navigation.navigate("ForgotPassword")
@@ -115,9 +118,6 @@ export default class WelcomeScreen extends React.Component {
     var email = params.user;
     var loc = params.location;
     var employeeRole = params.role;
-    console.log("EmailBefore: ", email);
-    console.log("LocBefore: ", loc);
-    console.log("RoleBefore: ", employeeRole);
     this.props.navigation.navigate("CreateUser", {user: email, location: loc, role: employeeRole})
   }
 
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
   banner:{
     width: "100%",
     //height: "17%",
-    flex: 1.5,
+    flex: 1.2,
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
@@ -421,7 +421,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     marginTop: "3%",
-    height: "55px",
+    height: "65px",
     width: "100vw",
     backgroundColor: "#093b15"
   },

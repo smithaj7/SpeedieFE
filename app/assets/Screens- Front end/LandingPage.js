@@ -129,7 +129,8 @@ export default class LandingPage extends React.Component {
     var email = params.user;
     var loc = params.loc;
     var employeeRole = params.role;
-    this.props.navigation.navigate("AccountInfo", {user: email, location: loc, role: employeeRole});
+    var passwordLength = params.pLength;
+    this.props.navigation.navigate("AccountInfo", {user: email, location: loc, role: employeeRole, pLength: passwordLength});
   }
 
   inventoryPressHandler() {
@@ -137,7 +138,8 @@ export default class LandingPage extends React.Component {
     var email = params.user;
     var loc = params.loc;
     var employeeRole = params.role;
-    this.props.navigation.navigate("Inventory", {user: email, location: loc, role: employeeRole});
+    var passwordLength = params.pLength;
+    this.props.navigation.navigate("Inventory", {user: email, location: loc, role: employeeRole, pLength: passwordLength});
   }
 
   ordersPressHandler() {
@@ -145,9 +147,8 @@ export default class LandingPage extends React.Component {
     var email = params.user;
     var loc = params.loc;
     var employeeRole = params.role;
-    console.log("Email: ",email)
-    console.log("Location: ",loc)
-    this.props.navigation.navigate("MiaOrders", {user: email, location: loc, role: employeeRole});
+    var passwordLength = params.pLength;
+    this.props.navigation.navigate("MiaOrders", {user: email, location: loc, role: employeeRole, pLength: passwordLength});
   }
 
   _handleForgotPress(){
