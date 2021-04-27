@@ -82,7 +82,7 @@ export default class CreateUser extends React.Component {
         console.log("Email: ", email)
         console.log("Loc: ", loc)
         console.log("Role: ", employeeRole)
-        this.props.navigation.navigate("AccountInfo", {user: email, location: loc, role: employeeRole});
+        this.props.navigation.navigate("LandingPage", {user: email, location: loc, role: employeeRole});
         // }
       }
   };
@@ -97,6 +97,13 @@ export default class CreateUser extends React.Component {
     // };
 
   render() {
+    const { params } = this.props.navigation.state;
+    var email = params.email;
+    var loc = params.loc;
+    var employeeRole = params.role;
+    console.log("Email: ", email)
+    console.log("Loc: ", loc)
+    console.log("Role: ", employeeRole)
     return (
       <View style={styles.container}>
         <Image style = {styles.logo} source={require("../../../SpeediePNG.png")}></Image>
@@ -268,10 +275,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   createBtn: {
-    width: "37%",
+    width: "150px",
     backgroundColor: "#113B08",
     borderRadius: 10,
-    height: "13%",
+    height: "50px",
     alignSelf: "center",
     position: "relative",
     marginTop: "25%",
