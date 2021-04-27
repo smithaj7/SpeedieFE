@@ -115,6 +115,9 @@ export default class WelcomeScreen extends React.Component {
     var email = params.user;
     var loc = params.location;
     var employeeRole = params.role;
+    console.log("EmailBefore: ", email);
+    console.log("LocBefore: ", loc);
+    console.log("RoleBefore: ", employeeRole);
     this.props.navigation.navigate("CreateUser", {user: email, location: loc, role: employeeRole})
   }
 
@@ -418,7 +421,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     marginTop: "3%",
-    height: "15%",
+    height: "30%",
     width: "100%",
     backgroundColor: "#093b15"
   },
