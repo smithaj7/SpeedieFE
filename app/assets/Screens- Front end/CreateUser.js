@@ -79,6 +79,9 @@ export default class CreateUser extends React.Component {
         var email = params.email;
         var loc = params.loc;
         var employeeRole = params.role;
+        console.log("Email: ", email)
+        console.log("Loc: ", loc)
+        console.log("Role: ", employeeRole)
         this.props.navigation.navigate("AccountInfo", {user: email, location: loc, role: employeeRole});
         // }
       }
@@ -271,7 +274,7 @@ const styles = StyleSheet.create({
     height: "11%",
     alignSelf: "center",
     position: "relative",
-    marginTop: "12%",
+    marginTop: "20%",
     marginBottom: "2%",
   },
   createText: {
