@@ -21,7 +21,7 @@ export default class LandingPage extends React.Component {
       loggedIn: false,
     };
 
-    this._handlePress = this._handlePress.bind(this);
+    //this._handlePress = this._handlePress.bind(this);
     this._handleForgotPress = this._handleForgotPress.bind(this);
     this._handleAccountPress = this._handleAccountPress.bind(this);
     this.ordersPressHandler = this.ordersPressHandler.bind(this);
