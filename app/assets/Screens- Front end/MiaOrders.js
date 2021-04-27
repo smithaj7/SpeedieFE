@@ -44,6 +44,7 @@ export default class MiaOrders extends React.Component {
       page: 0,
       searchText: "",
       orderStatus: "A",
+      location: "",
       newName: "",
       newPhone: "",
       newDeliveryDate: "",
@@ -106,6 +107,29 @@ export default class MiaOrders extends React.Component {
       body: JSON.stringify({
         location: this.props.navigation.state.params.location,
         searchText: text,
+        //orderStatus: this.state.orderStatus,
+      }),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+        this.setState({
+          isLoading: false,
+          dataSource: [responseJson],
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  onChangeItem = async (item) => {
+    await this.setState({ location: item });
+    return fetch("https://speediebackend.azurewebsites.net/api/HttpTrigger1?", {
+      method: "POST",
+      body: JSON.stringify({
+        location: this.state.location,
+        //searchText: text,
         //orderStatus: this.state.orderStatus,
       }),
     })
@@ -335,6 +359,7 @@ export default class MiaOrders extends React.Component {
       }
 
       var menu;
+      var locationDrop;
         if (this.props.navigation.state.params.role == "Associate"){
           menu = <View style={styles.menuView}>
           <TouchableOpacity style={styles.leftButton} onPress={this.ordersPressHandler}>
@@ -357,7 +382,45 @@ export default class MiaOrders extends React.Component {
           <Text style={styles.menuText} onPress={this._handleAccountPress}>Account</Text>
           </TouchableOpacity>
         </View>
+        
+          locationDrop = 
+          <View style={styles.dropDownPicker}>
+            <DropDownPicker
+              items={[
+                { label: "Administrator", value: "Administrator" },
+                { label: "Delivery Driver", value: "Associate" },
+              ]}
+              placeholder="Employee Type"
+              style={{ 
+                backgroundColor: "white", 
+                margin: "10px",
+              }}
+              dropDownStyle={{
+              }}
+              onChangeItem={(item) => this.setState({role: item.value})}
+            ></DropDownPicker>
+            <DropDownPicker
+              items={[
+                { label: "Miami", value: "Miami" },
+                { label: "New Orleans", value: "New Orleans" },
+                { label: "Chicago", value: "Chicago" },
+              ]}
+              placeholder="Location"
+              style={{ 
+                backgroundColor: "white", 
+                margin: "10px",
+              }}
+              dropDownStyle={{
+              }}
+              onChangeItem={(item) => this.onChangeItem(item)}
+            ></DropDownPicker>
+        </View>
         }
+
+        //onChangeText={(text) => this.onChangeSearch(text)}
+
+        
+
 
       return (
         <View style={styles.container}>
@@ -369,6 +432,7 @@ export default class MiaOrders extends React.Component {
             style={styles.searchBar}
             onChangeText={(text) => this.onChangeSearch(text)}
           ></Searchbar>
+          {locationDrop}
           <ScrollView
             style={{
               width: "95%",
@@ -501,6 +565,12 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 35,
     fontWeight: "bold",
+  },
+
+  dropDownPicker: {
+    alignSelf: "flex-start",
+    //flexDirection: "row",
+    justifyContent: "space-between",
   },
   textInput: {
     height: 40,

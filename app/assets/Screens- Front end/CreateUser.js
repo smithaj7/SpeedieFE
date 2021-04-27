@@ -68,19 +68,22 @@ export default class CreateUser extends React.Component {
       }
       else{
         await this.getData();
-        // // var li = this.state.dataSource.map((val, key) => {
-        // //     return val.ResetStatus;
-        // // });
-        // // if (li == "invalid email"){
-        // //     alert("Invalid email");
-        // // }
-        // else{
+
+        var existingEmail = this.state.dataSource.map((val, key) => {
+          return val.existing;
+      });
+
+        if (existingEmail == "Yes"){
+          alert("Email already exists")
+        }
+        else{
         const { params } = this.props.navigation.state;
-        var email = params.email;
-        var loc = params.loc;
+        var email = params.user;
+        var loc = params.location;
         var employeeRole = params.role;
         this.props.navigation.navigate("AccountInfo", {user: email, location: loc, role: employeeRole});
         // }
+        }
       }
   };
 
