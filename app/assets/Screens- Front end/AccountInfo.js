@@ -255,7 +255,7 @@ export default class WelcomeScreen extends React.Component {
             <Text style={styles.textStyle}>Email address: {this.props.navigation.state.params.user}</Text>
         </View>
         <View style={styles.PasswordView}>
-            <Text style={styles.textStyle}>Password: ***********</Text>
+            <Text style={styles.textStyle}>Password: {pword}</Text>
         </View>
         <View style={styles.BottlesView}>
             <TouchableOpacity style={styles.changePasswordBtn}>

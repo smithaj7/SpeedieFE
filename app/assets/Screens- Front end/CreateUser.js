@@ -81,10 +81,8 @@ export default class CreateUser extends React.Component {
         var email = params.user;
         var loc = params.location;
         var employeeRole = params.role;
-        console.log("Email: ", email)
-        console.log("Loc: ", loc)
-        console.log("Role: ", employeeRole)
-        this.props.navigation.navigate("LandingPage", {user: email, location: loc, role: employeeRole});
+        var passwordLength = params.pLength;
+        this.props.navigation.navigate("LandingPage", {user: email, location: loc, role: employeeRole, pLength: passwordLength});
         // }
         }
       }
