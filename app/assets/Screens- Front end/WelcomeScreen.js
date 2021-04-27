@@ -144,7 +144,7 @@ export default class WelcomeScreen extends React.Component {
         {/* <View style = {styles.banner}>
           <Text style={styles.bannerText}>Speedie Login</Text>
         </View> */}
-        <Image style = {styles.logo} source={require("../../../SpeediePNG.png")}></Image>
+        <Image style = {styles.logo} source={{uri: 'https://cdn.shopify.com/s/files/1/0418/4483/4468/files/Hoodie_front_logo_with_grid_180x.png?v=1594074354'}}></Image>
         <Text style={styles.loginHeader}>Login to Speedie Bean below:</Text>
         <View style={styles.EmailInputView}>
           <TextInput
