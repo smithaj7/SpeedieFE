@@ -355,7 +355,7 @@ export default class MiaOrders extends React.Component {
                     </DataTable.Cell>
                     <DataTable.Cell style={{flex: .5}} >{val.deliveryDates[i]}</DataTable.Cell>
                     <DataTable.Cell style={{flex: 1}}
-                      onPress={() => Linking.openURL('https://www.google.com/maps/search/?api=1&query=' + JSON.stringify(val.addresses[i]) + '+' +  JSON.stringify(val.locations[i]))}>
+                      onPress={() => window.open('https://www.google.com/maps/search/?api=1&query=' + JSON.stringify(val.addresses[i]) + '+' +  JSON.stringify(val.locations[i]))}>
                       {val.addresses[i]}</DataTable.Cell>
                     <DataTable.Cell style={{flex: .3}}>
                       <TouchableOpacity
