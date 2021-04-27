@@ -333,7 +333,7 @@ export default class MiaOrders extends React.Component {
                     <DataTable.Cell style={{flex: .3}}>
                       <TouchableOpacity
                         style={styles.editOrder}
-                        onPress={this.fillOrder.bind(this, i, "I",0,0)}
+                        onPress={this.fillOrder.bind(this, i, "I",val.quarts[i],val.halfGals[i])}
                       >
                         <Text style={styles.editText}>Claim</Text>
                       </TouchableOpacity>
