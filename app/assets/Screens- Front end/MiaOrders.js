@@ -16,6 +16,8 @@ import {
 import navigation from "react-navigation";
 import Dialog, {DialogTitle, DialogContent } from 'react-native-popup-dialog';
 import Modal from 'react-native-modal';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 
 
@@ -271,33 +273,23 @@ export default class MiaOrders extends React.Component {
                  <div> Address: {val.addresses[i]}</div>
                  <div> Quarts: {val.quarts[i]}</div>
                 <div> HGs: {val.halfGals[i]}</div> </div>
-              if (val.orderStatuses[i] == "A") {
+               if (val.orderStatuses[i] == "A") {
                 return (
-                    
-                <View>
-                  <DataTable.Row style={i % 2? { background : "#D3D3D3" }:{ background : "white" }} key={i} >
-                    {/* <DataTable.Cell style={{flex: .2}} >
-                    <Button
-                            title="+"
-                            onPress={() => { this.setState({ visible: true }); }}
-                          />
-                          {this.popUps(i,val)}
-
-                        {/* <Dialog
-                          visible={this.state.visible}
-                          dialogTitle={<DialogTitle title="More Information" />}
-                          onTouchOutside={() => { this.setState({ visible: false });}} >
-                          {this.popUps(i,val)}
-                            
-                          <DialogContent>
-                            {popupinfo}
-                          </DialogContent>
-                        </Dialog>
-                        
-                    </DataTable.Cell> */}
-                    <DataTable.Cell style={{flex: 1}} >{val.names[i]}</DataTable.Cell>
+                  <DataTable.Row style={i % 2? { background : "#D3D3D3" }:{ background : "white" }} key={i}>
+                    <DataTable.Cell style={{flex: .2}} >
+                        <Popup trigger={<button>+</button>} position="right center">
+                          <div> Customer: {val.names[i]}</div>
+                          <div> Phone Number: {val.phoneNumbers[i]}</div>
+                          <div> Location: {val.locations[i]}</div>
+                          <div> Address: {val.addresses[i]}</div>
+                          <div> Quarts: {val.quarts[i]}</div>
+                          <div> Half Gallons: {val.halfGals[i]}</div>
+                          <div> Delivery Date: {val.deliveryDates[i]}</div>
+                        </Popup>
+                    </DataTable.Cell>
+                    <DataTable.Cell style={{flex: .5}} >{val.deliveryDates[i]}</DataTable.Cell>
                     <DataTable.Cell style={{flex: 1}}
-                      onPress={() => window.open('https://www.google.com/maps/search/?api=1&query=' + JSON.stringify(val.addresses[i]) + '+' +  JSON.stringify(val.locations[i]), 'blank')}>
+                      onPress={() => Linking.openURL('https://www.google.com/maps/search/?api=1&query=' + JSON.stringify(val.addresses[i]) + '+' +  JSON.stringify(val.locations[i]))}>
                       {val.addresses[i]}</DataTable.Cell>
                     <DataTable.Cell style={{flex: .3}}>
                       <TouchableOpacity
@@ -308,37 +300,24 @@ export default class MiaOrders extends React.Component {
                       </TouchableOpacity>
                     </DataTable.Cell>
                   </DataTable.Row>
-                  <DataTable.Row style={i % 2? { background : "#D3D3D3" }:{ background : "white" }} key={i} >
-                    <DataTable.Cell style={{flex: .6}} >{val.deliveryDates[i]}</DataTable.Cell>
-                    <DataTable.Cell style={{flex: .8}} >{val.phoneNumbers[i]}</DataTable.Cell>
-                    <DataTable.Cell style={{flex: .5}} >Quarts: {val.quarts[i]},</DataTable.Cell>
-                    <DataTable.Cell style={{flex: .4}} >HGs: {val.halfGals[i]}</DataTable.Cell>
-                  </DataTable.Row>
-
-                </View>
                 );
               } else {
                 return (
                   <DataTable.Row style={i % 2? { background : "#D3D3D3" }:{ background : "white" }} key={i}>
                     <DataTable.Cell style={{flex: .2}} >
-                        <Button
-                            title="+"
-                            onPress={() => { this.setState({ visible: true }); }}
-                          />
-                          
-                        <Dialog
-                          visible={this.state.visible}
-                          dialogTitle={<DialogTitle title="More Information" />}
-                          onTouchOutside={() => { this.setState({ visible: false });}} >
-                            
-                          <DialogContent>
-                            {popupinfo}
-                          </DialogContent>
-                        </Dialog>
+                        <Popup trigger={<button>+</button>} position="right center">
+                          <div> Customer: {val.names[i]}</div>
+                          <div> Phone Number: {val.phoneNumbers[i]}</div>
+                          <div> Location: {val.locations[i]}</div>
+                          <div> Address: {val.addresses[i]}</div>
+                          <div> Quarts: {val.quarts[i]}</div>
+                          <div> Half Gallons: {val.halfGals[i]}</div>
+                          <div> Delivery Date: {val.deliveryDates[i]}</div>
+                        </Popup>
                     </DataTable.Cell>
                     <DataTable.Cell style={{flex: .5}} >{val.deliveryDates[i]}</DataTable.Cell>
                     <DataTable.Cell style={{flex: 1}}
-                      onPress={() => window.open('https://www.google.com/maps/search/?api=1&query=' + JSON.stringify(val.addresses[i]) + '+' +  JSON.stringify(val.locations[i]), 'blank')}>
+                      onPress={() => Linking.openURL('https://www.google.com/maps/search/?api=1&query=' + JSON.stringify(val.addresses[i]) + '+' +  JSON.stringify(val.locations[i]))}>
                       {val.addresses[i]}</DataTable.Cell>
                     <DataTable.Cell style={{flex: .3}}>
                       <TouchableOpacity
