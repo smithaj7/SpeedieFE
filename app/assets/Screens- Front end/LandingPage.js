@@ -233,8 +233,8 @@ const styles = StyleSheet.create({
   //   //alignItems: "center",
   // },
   logo: {
-    width: "60%",
-    height: "35%",
+    width: "267px",
+    height: "201px",
     position: "relative",
     alignSelf: "center",
     marginTop: "7%",
@@ -256,8 +256,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#113B08",
     alignItems: "center",
     justifyContent: "center",
-    height: "25%",
-    width: "40%",
+    height: "40px",
+    width: "120px",
     borderRadius: 15,
   },
 
