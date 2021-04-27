@@ -268,13 +268,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   createBtn: {
-    width: "32%",
+    width: "37%",
     backgroundColor: "#113B08",
     borderRadius: 10,
-    height: "11%",
+    height: "13%",
     alignSelf: "center",
     position: "relative",
-    marginTop: "20%",
+    marginTop: "25%",
     marginBottom: "2%",
   },
   createText: {

@@ -290,7 +290,7 @@ export default class MiaOrders extends React.Component {
                     <DataTable.Cell style={{flex: .5}} >{val.deliveryDates[i]}</DataTable.Cell>
                     <DataTable.Cell style={{flex: 1}}
                       onPress={() => window.open('https://www.google.com/maps/search/?api=1&query=' + JSON.stringify(val.addresses[i]) + '+' +  JSON.stringify(val.locations[i]))}>
-                      <div style={addressText}> {val.addresses[i]} </div>
+                      <div style={styles.addressText}> {val.addresses[i]} </div>
                       </DataTable.Cell>
                     <DataTable.Cell style={{flex: .3}}>
                       <TouchableOpacity
