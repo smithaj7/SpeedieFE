@@ -64,7 +64,7 @@ export default class WelcomeScreen extends React.Component {
   }
 
   getData = async () => {
-    return await fetch("http://localhost:7071/api/AccountInfo", {
+    return await fetch("https://speediebackend.azurewebsites.net/api/AccountInfo?", {
       method: "POST",
       body: JSON.stringify({
         email: this.props.navigation.state.params.user
