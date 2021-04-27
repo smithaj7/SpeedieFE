@@ -36,7 +36,7 @@ export default class CreateUser extends React.Component {
   // }
 
   getData = async () => {
-    return await fetch("http://localhost:7071/api/AddEmployee", {
+    return await fetch("https://speediebackend.azurewebsites.net/api/AddEmployee?", {
       method: "POST",
       body: JSON.stringify({
         email: this.state.email,

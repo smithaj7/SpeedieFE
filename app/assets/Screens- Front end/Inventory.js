@@ -45,7 +45,7 @@ export default class Inventory extends React.Component {
       
 
       getData = async () => {
-        await fetch("http://localhost:7071/api/getInventory", {
+        await fetch("https://speediebackend.azurewebsites.net/api/getInventory?", {
           method: "POST",
           body: JSON.stringify({
             location: this.state.location,
@@ -83,7 +83,7 @@ export default class Inventory extends React.Component {
 
       itemChange = async (item) => {
         
-        await fetch("http://localhost:7071/api/getInventory", {
+        await fetch("https://speediebackend.azurewebsites.net/api/getInventory?", {
           method: "POST",
           body: JSON.stringify({
             location: item.value,
@@ -125,7 +125,7 @@ export default class Inventory extends React.Component {
           size == "HalfGals"
         }
   
-        await fetch("http://localhost:7071/api/addInventory", {
+        await fetch("https://speediebackend.azurewebsites.net/api/AddInventory?", {
             method: "POST",
             body: JSON.stringify({
               size: size,

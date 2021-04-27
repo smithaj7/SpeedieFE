@@ -59,7 +59,7 @@ export default class ForgotPassword extends React.Component {
   }
 
   getData = async () => {
-    return await fetch("http://localhost:7071/api/ForgotPassword", {
+    return await fetch("https://speediebackend.azurewebsites.net/api/ForgotPassword?", {
       method: "POST",
       body: JSON.stringify({
         email: this.state.email,

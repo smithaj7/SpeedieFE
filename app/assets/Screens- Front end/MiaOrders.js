@@ -77,7 +77,7 @@ export default class MiaOrders extends React.Component {
   }
 
   getData = async () => {
-    return fetch("http://localhost:7071/api/HttpTrigger1", {
+    return fetch("https://speediebackend.azurewebsites.net/api/HttpTrigger1?", {
       method: "POST",
       body: JSON.stringify({
         location: this.props.navigation.state.params.location,
@@ -99,7 +99,7 @@ export default class MiaOrders extends React.Component {
 
   onChangeSearch = async (text) => {
     await this.setState({ searchText: text });
-    return fetch("http://localhost:7071/api/HttpTrigger1", {
+    return fetch("https://speediebackend.azurewebsites.net/api/HttpTrigger1?", {
       method: "POST",
       body: JSON.stringify({
         location: this.props.navigation.state.params.location,
@@ -120,23 +120,23 @@ export default class MiaOrders extends React.Component {
       });
   };
 
-  addOrderPressHandler() {
-    return fetch("http://localhost:7071/api/AddOrder", {
-      method: "POST",
-      body: JSON.stringify({
-        name: this.state.newName,
-        phone: this.state.newPhone,
-        location: this.props.navigation.state.params.loc,
-        deliveryDate: this.state.newDeliveryDate,
-        address: this.state.newAddress,
-        quantity: this.state.newQuantity,
-      }),
-    })
-      .catch((error) => {
-        console.log(error);
-      })
-      .then(this.refreshScreen);
-  }
+  // addOrderPressHandler() {
+  //   return fetch("http://localhost:7071/api/AddOrder", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       name: this.state.newName,
+  //       phone: this.state.newPhone,
+  //       location: this.props.navigation.state.params.loc,
+  //       deliveryDate: this.state.newDeliveryDate,
+  //       address: this.state.newAddress,
+  //       quantity: this.state.newQuantity,
+  //     }),
+  //   })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     })
+  //     .then(this.refreshScreen);
+  // }
   newOrderPressHandler() {
     this.props.navigation.navigate("NewOrder");
   }
@@ -202,7 +202,7 @@ export default class MiaOrders extends React.Component {
   fillOrder(i, orderStatus, qts, hgs) {
     const { params } = this.props.navigation.state;
     var user = params.user;
-    return fetch("http://localhost:7071/api/FillOrder", {
+    return fetch("https://speediebackend.azurewebsites.net/api/FillOrder?", {
       method: "POST",
       body: JSON.stringify({
         location: this.props.navigation.state.params.location,
