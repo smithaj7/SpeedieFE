@@ -18,6 +18,7 @@ import Dialog, {DialogTitle, DialogContent } from 'react-native-popup-dialog';
 import Modal from 'react-native-modal';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import DropDownPicker from "react-native-dropdown-picker";
 
 
 
@@ -382,6 +383,14 @@ export default class MiaOrders extends React.Component {
           <Text style={styles.menuText} onPress={this._handleAccountPress}>Account</Text>
           </TouchableOpacity>
         </View>
+
+        var displayLocation;
+        if(this.props.navigation.state.params.role == "Associate"){
+          displayLocation = this.props.navigation.state.params.location;
+        }
+        else{
+          displayLocation = "All";
+        }
         
           locationDrop = 
           <View style={styles.dropDownPicker}>
@@ -425,7 +434,7 @@ export default class MiaOrders extends React.Component {
       return (
         <View style={styles.container}>
           <View style={styles.header}>
-            <Text style={styles.text}>{this.props.navigation.state.params.location} Orders</Text>
+            <Text style={styles.text}>{displayLocation} Orders</Text>
           </View>
           <Searchbar
             placeholder="Search"
