@@ -290,8 +290,7 @@ export default class MiaOrders extends React.Component {
                     <DataTable.Cell style={{flex: .5}} >{val.deliveryDates[i]}</DataTable.Cell>
                     <DataTable.Cell style={{flex: 1}}
                       onPress={() => window.open('https://www.google.com/maps/search/?api=1&query=' + JSON.stringify(val.addresses[i]) + '+' +  JSON.stringify(val.locations[i]))}>
-                      <div style={styles.addressText}> {val.addresses[i]} </div>
-                      </DataTable.Cell>
+                      {val.addresses[i]}</DataTable.Cell>
                     <DataTable.Cell style={{flex: .3}}>
                       <TouchableOpacity
                         style={styles.editOrder}
@@ -684,8 +683,5 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     color: "white"
-  },
-  addressText: {
-    color: "blue"
   }
 });
