@@ -418,7 +418,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     marginTop: "3%",
-    height: "15%",
+    height: "30%",
     width: "100%",
     backgroundColor: "#093b15"
   },

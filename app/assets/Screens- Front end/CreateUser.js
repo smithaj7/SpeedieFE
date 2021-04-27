@@ -265,13 +265,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   createBtn: {
-    width: "40%%",
+    width: "32%",
     backgroundColor: "#113B08",
     borderRadius: 10,
-    height: "6%",
+    height: "11%",
     alignSelf: "center",
     position: "relative",
-    marginTop: "18%",
+    marginTop: "12%",
     marginBottom: "2%",
   },
   createText: {
