@@ -373,7 +373,7 @@ export default class MiaOrders extends React.Component {
       }
 
       var menu;
-      var locationDrop;
+      //var locationDrop;
         if (this.props.navigation.state.params.role == "Associate"){
           menu = <View style={styles.menuView}>
           <TouchableOpacity style={styles.leftButton} onPress={this.ordersPressHandler}>
@@ -422,7 +422,7 @@ export default class MiaOrders extends React.Component {
             style={styles.searchBar}
             onChangeText={(text) => this.onChangeSearch(text)}
           ></Searchbar>
-          {locationDrop}
+          {/* {locationDrop} */}
           <ScrollView
             style={{
               width: "95%",
