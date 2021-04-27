@@ -115,6 +115,9 @@ export default class WelcomeScreen extends React.Component {
     var email = params.user;
     var loc = params.location;
     var employeeRole = params.role;
+    console.log("EmailBefore: ", email);
+    console.log("LocBefore: ", loc);
+    console.log("RoleBefore: ", employeeRole);
     this.props.navigation.navigate("CreateUser", {user: email, location: loc, role: employeeRole})
   }
 
