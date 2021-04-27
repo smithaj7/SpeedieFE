@@ -250,6 +250,7 @@ export default class MiaOrders extends React.Component {
         orderNumber: i + 1,
         newStatus: orderStatus,
         filledBy: user,
+        role: this.props.navigation.state.params.role,
         //bottlesReturned: 1,
         quarts: qts,
         halfGals: hgs,
