@@ -396,34 +396,15 @@ export default class MiaOrders extends React.Component {
           <Text style={styles.menuText} onPress={this._handleAccountPress}>Account</Text>
           </TouchableOpacity>
         </View>
-
+        
+         
+        }
         var displayLocation;
         if(this.props.navigation.state.params.role == "Associate"){
           displayLocation = this.props.navigation.state.params.location;
         }
         else{
           displayLocation = "All";
-        }
-        
-          locationDrop = 
-          <View style={styles.dropDownPicker}>
-          
-            <DropDownPicker
-              items={[
-                { label: "Miami", value: "Miami" },
-                { label: "New Orleans", value: "New Orleans" },
-                { label: "Chicago", value: "Chicago" },
-              ]}
-              placeholder="Location"
-              style={{ 
-                backgroundColor: "white", 
-                margin: "10px",
-              }}
-              dropDownStyle={{
-              }}
-              onChangeItem={(item) => this.onChangeItem(item)}
-            ></DropDownPicker>
-        </View>
         }
 
         //onChangeText={(text) => this.onChangeSearch(text)}
