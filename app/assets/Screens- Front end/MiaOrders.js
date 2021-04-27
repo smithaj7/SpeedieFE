@@ -720,8 +720,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     marginTop: 20,
-    height: "10%",
-    width: "100%",
+    height: "55px",
+    width: "100vw",
     backgroundColor: "#093b15"
   },
   leftButton: {
