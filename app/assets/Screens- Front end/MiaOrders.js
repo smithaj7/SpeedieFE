@@ -109,6 +109,7 @@ export default class MiaOrders extends React.Component {
   };
 
   onChangeSearch = async (text) => {
+    var orderLocation;
     if(this.props.navigation.state.params.role == "Associate"){
       orderLocation = this.props.navigation.state.params.location;
     }
