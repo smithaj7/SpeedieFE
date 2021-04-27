@@ -81,10 +81,17 @@ export default class MiaOrders extends React.Component {
   }
 
   getData = async () => {
+    var orderLocation;
+    if(this.props.navigation.state.params.role == "Associate"){
+      orderLocation = this.props.navigation.state.params.location;
+    }
+    else{
+      orderLocation = this.state.location;
+    }
     return fetch("https://speediebackend.azurewebsites.net/api/HttpTrigger1?", {
       method: "POST",
       body: JSON.stringify({
-        location: this.props.navigation.state.params.location,
+        location: orderLocation,
         //orderStatus: this.state.orderStatus,
       }),
     })
@@ -102,11 +109,17 @@ export default class MiaOrders extends React.Component {
   };
 
   onChangeSearch = async (text) => {
+    if(this.props.navigation.state.params.role == "Associate"){
+      orderLocation = this.props.navigation.state.params.location;
+    }
+    else{
+      orderLocation = this.state.location;
+    }
     await this.setState({ searchText: text });
     return fetch("https://speediebackend.azurewebsites.net/api/HttpTrigger1?", {
       method: "POST",
       body: JSON.stringify({
-        location: this.props.navigation.state.params.location,
+        location: orderLocation,
         searchText: text,
         //orderStatus: this.state.orderStatus,
       }),
@@ -394,20 +407,7 @@ export default class MiaOrders extends React.Component {
         
           locationDrop = 
           <View style={styles.dropDownPicker}>
-            <DropDownPicker
-              items={[
-                { label: "Administrator", value: "Administrator" },
-                { label: "Delivery Driver", value: "Associate" },
-              ]}
-              placeholder="Employee Type"
-              style={{ 
-                backgroundColor: "white", 
-                margin: "10px",
-              }}
-              dropDownStyle={{
-              }}
-              onChangeItem={(item) => this.setState({role: item.value})}
-            ></DropDownPicker>
+          
             <DropDownPicker
               items={[
                 { label: "Miami", value: "Miami" },
